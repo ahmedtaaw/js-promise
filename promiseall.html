@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise all</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        var p1=new Promise(function(resolve,reject){
+            setTimeout(function(){
+                resolve('one')
+            },3000);
+        });
+
+        var p2=new Promise(function(resolve,reject){
+            setTimeout(function(){
+                resolve('two')
+            },1000);
+        });
+
+        var p3=new Promise(function(resolve,reject){
+            setTimeout(function(){
+                resolve('three')
+            },4000);
+        });
+
+        Promise.all([p1,p2,p3])
+        .then(function(values){
+            console.log(values);
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+
+    </script>
+</body>
+
+</html>
