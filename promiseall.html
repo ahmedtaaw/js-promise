@@ -10,34 +10,49 @@
 
 <body>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
 
-        var p1=new Promise(function(resolve,reject){
-            setTimeout(function(){
+        var p1 = new Promise(function (resolve, reject) {
+            setTimeout(function () {
                 resolve('one')
-            },3000);
+            }, 3000);
         });
 
-        var p2=new Promise(function(resolve,reject){
-            setTimeout(function(){
+        var p2 = new Promise(function (resolve, reject) {
+            setTimeout(function () {
                 resolve('two')
-            },1000);
+            }, 1000);
         });
 
-        var p3=new Promise(function(resolve,reject){
-            setTimeout(function(){
+        var p3 = new Promise(function (resolve, reject) {
+            setTimeout(function () {
                 resolve('three')
-            },4000);
+            }, 4000);
         });
 
-        Promise.all([p1,p2,p3])
-        .then(function(values){
-            console.log(values);
+        Promise.all([p1, p2, p3])
+            .then(function (values) {
+                console.log(values);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        ////get json promises
+
+       
+
+        var getjson1 = jQuery.getJSON('https://jsonplaceholder.typicode.com/posts');
+        var getjson2 = jQuery.getJSON('https://jsonplaceholder.typicode.com/photos');
+
+        Promise.all([getjson1,getjson2])
+        .then(function(results){
+            console.log('all data has loaded')
         })
         .catch(function(error){
-            console.log(error);
-        });
+            console.log('one or more requests have failed: '+error.statusText)
+        })
 
     </script>
 </body>
